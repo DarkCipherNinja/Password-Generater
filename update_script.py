@@ -12,7 +12,7 @@ init(autoreset=True)
 
 def main():
     banner_module.display_banner_and_social()  
-display_menu()
+
 
 
 
@@ -53,5 +53,5 @@ def update_script():
         sys.exit(1)
 
 if __name__ == "__main__":
-    display_banner_and_social()  # Show banner and social media info
+    display_menu()  # Show banner and social media info
     check_for_updates()  # Check for updates
