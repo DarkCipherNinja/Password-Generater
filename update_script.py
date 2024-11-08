@@ -6,10 +6,13 @@ import subprocess
 import os
 import time
 import sys
+import banner_module
 
 init(autoreset=True)
 
-
+def main():
+    banner_module.display_banner_and_social()  
+display_menu()
 
 
 
