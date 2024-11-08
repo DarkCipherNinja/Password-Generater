@@ -38,6 +38,30 @@ def generate_and_save_combinations(length, character_set, filename):
                 time.sleep(0.1)
     print(Fore.GREEN + f"All combinations saved to {filename}")
 
+# Menu-driven password generation based on user choice
+def generate_passwords(length, character_set, option_name):
+    print(Fore.CYAN + "Choose an option:")
+    print(Fore.YELLOW + "1. Generate random passwords")
+    print(Fore.YELLOW + "2. Generate all possible combinations")
+    choice = input(Fore.CYAN + "Enter your choice (1/2): ").strip()
+
+    filename_prefix = option_name.lower().replace(" ", "_")
+    if choice == '1':
+        try:
+            num_passwords = input(Fore.CYAN + "Enter the number of random passwords to generate (min 2, default 300): ").strip()
+            num_passwords = int(num_passwords) if num_passwords else 300
+            if num_passwords < 2:
+                print(Fore.RED + "Number of passwords should be at least 2.")
+                return
+            generate_and_save_random_passwords(length, character_set, num_passwords, f"{filename_prefix}_random_pass.txt")
+        except ValueError:
+            print(Fore.RED + "Invalid input. Generating 300 passwords by default.")
+            generate_and_save_random_passwords(length, character_set, filename=f"{filename_prefix}_random_pass.txt")
+    elif choice == '2':
+        generate_and_save_combinations(length, character_set, f"{filename_prefix}_combinations.txt")
+    else:
+        print(Fore.RED + "Invalid choice. Please enter 1 or 2.")
+
 def display_menu():
     print(Fore.CYAN + Style.BRIGHT + "Select an option:")
     print(Fore.YELLOW + "1. All Alphabets (Uppercase)")
@@ -52,6 +76,32 @@ def display_menu():
     print(Fore.YELLOW + "10. Numbers & Symbols")
     print(Fore.YELLOW + "11. Custom (from file custom_pass_file.txt)")
     print(Fore.YELLOW + "12. All (Alphabets Lowercase & Uppercase, Symbols, Numbers)")
+
+#pass function 
+     options = {
+            '1': ("All_Alphabets_Uppercase", string.ascii_uppercase),
+            '2': ("All_Alphabets_Lowercase", string.ascii_lowercase),
+            '3': ("Both_Upper_Lower", string.ascii_uppercase + string.ascii_lowercase),
+            '4': ("All_Numbers", string.digits),
+            '5': ("All_Symbols", string.punctuation),
+            '6': ("Alphabets_Lowercase_Numbers", string.ascii_lowercase + string.digits),
+            '7': ("Alphabets_Lowercase_Symbols", string.ascii_lowercase + string.punctuation),
+            '8': ("Alphabets_Uppercase_Numbers", string.ascii_uppercase + string.digits),
+            '9': ("Alphabets_Uppercase_Symbols", string.ascii_uppercase + string.punctuation),
+            '10': ("Numbers_Symbols", string.digits + string.punctuation),
+            '11': ("Custom", load_custom_alphabets)),
+            '12': ("All_Alphabets_Symbols_Numbers", string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation)
+        }
+        
+        if choice in options:
+            option_name, character_set = options[choice]
+            if character_set:
+                generate_passwords(password_length, character_set, option_name)
+        else:
+            print(Fore.RED + "Invalid choice. Please select a number between 1 and 12.")
+    except ValueError:
+        print(Fore.RED + "Please enter a valid number for the password length.")
+
 
 def main():
     banner_module.display_banner_and_social()  # Display banner and social media info
