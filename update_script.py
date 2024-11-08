@@ -11,9 +11,7 @@ import banner_module
 init(autoreset=True)
 
 def main():
-    banner_module.display_banner_and_social()  
-
-
+    banner_module.display_banner_and_social()  # Display banner and social info from the banner_module
 
 
 def check_for_updates():
@@ -53,5 +51,5 @@ def update_script():
         sys.exit(1)
 
 if __name__ == "__main__":
-    display_menu()  # Show banner and social media info
+    main()  # Call the main function to display the banner and social media info
     check_for_updates()  # Check for updates
