@@ -9,49 +9,13 @@ import sys
 
 init(autoreset=True)
 
-# Banner text and social media information
-banner_text = "NINJA"
-social_media_usernames = [
-    ("TELEGRAM", "@black_ninja_pk"),
-    ("Coder", "@crazy_arain"),
-]
-
-def clear_console():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-def create_gradient_banner(text):
-    fonts = ['slant', 'banner3-D', 'block', 'digital', 'banner', 'isometric1']
-    selected_font = random.choice(fonts)
-    banner = pyfiglet.figlet_format(text, font=selected_font).splitlines()
-    
-    colors = [Fore.GREEN + Style.BRIGHT, Fore.YELLOW + Style.BRIGHT, Fore.RED + Style.BRIGHT]
-    total_lines = len(banner)
-    section_size = total_lines // len(colors)
-    
-    for i, line in enumerate(banner):
-        if i < section_size:
-            print(colors[0] + line)
-        elif i < section_size * 2:
-            print(colors[1] + line)
-        else:
-            print(colors[2] + line)
-
-def display_banner_and_social():
-    clear_console()
-    create_gradient_banner(banner_text)
-    print(Fore.LIGHTMAGENTA_EX + "Follow us on:")
-    for platform_name, username in social_media_usernames:
-        print(f"{Fore.CYAN}{platform_name + ':'} {Fore.GREEN}{username}")
 
 
-# Padding functions for AES encryption
-def pad(data):
-    padding_length = 16 - (len(data) % 16)
-    return data + (chr(padding_length) * padding_length).encode()
+
 
 def check_for_updates():
     print(Fore.YELLOW + "Checking for updates...")
-    repo_url = 'BLACK-NINJA-PK/Session-Link-Decoder'
+    repo_url = 'DarkCipherNinja/Password-Generater'
     api_url = f'https://api.github.com/repos/{repo_url}/commits/main'
     
     try:
